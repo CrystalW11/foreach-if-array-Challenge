@@ -1,21 +1,3 @@
-/* 
-This C# console application is designed to:
-- Use arrays to store student names and assignment scores.
-- Use a `foreach` statement to iterate through the student names as an outer program loop.
-- Use an `if` statement within the outer loop to identify the current student name and access that student's assignment scores.
-- Use a `foreach` statement within the outer loop to iterate though the assignment scores array and sum the values.
-- Use an algorithm within the outer loop to calculate the average exam score for each student.
-- Use an `if-elseif-else` construct within the outer loop to evaluate the average exam score and assign a letter grade automatically.
-- Integrate extra credit scores when calculating the student's final score and letter grade as follows:
-    - detects extra credit assignments based on the number of elements in the student's scores array.
-    - divides the values of extra credit assignments by 10 before adding extra credit scores to the sum of exam scores.
-- use the following report format to report student grades: 
-
-Student         Exam Score      Overall Grade   Extra Credit
-
-Sophia          92.2            95.88   A       92 (3.68 pts)
-
-*/
 int examAssignments = 5;  // Number of regular exam assignments
 
 // Arrays for student names and their respective assignment scores
@@ -55,9 +37,9 @@ foreach (string name in studentNames)
     int gradedExtraCreditAssignments = 0;
     int sumExamScores = 0;
     int sumExtraCreditScores = 0;
-    decimal currentStudentGrade = 0;
     decimal currentStudentExamScore = 0;
-    decimal currentStudentExtraCreditScore = 0;
+    decimal finalNumericScore = 0;
+    decimal extraCreditPoints = 0;
 
     // Sum the exam and extra credit scores, also count extra credit assignments
     foreach (int score in studentScores)
@@ -78,48 +60,45 @@ foreach (string name in studentNames)
     // Calculate the average exam score
     currentStudentExamScore = (decimal)(sumExamScores) / examAssignments;
 
-    // Calculate the raw extra credit points (no scaling yet)
-    decimal rawExtraCreditPoints = sumExtraCreditScores;
+    // Calculate the final numeric score (with 10% of the extra credit added to the exam scores)
+    finalNumericScore = (decimal)(sumExamScores + (sumExtraCreditScores * 0.1)) / examAssignments;
 
-    // Calculate the overall grade, including extra credit
-    currentStudentGrade = (decimal)((decimal)sumExamScores + ((decimal)sumExtraCreditScores / 10)) / examAssignments;
+    // Calculate the extra credit points earned (10% of the extra credit scores)
+    extraCreditPoints = (decimal)(sumExtraCreditScores * 0.1);
 
-    // Determine the letter grade based on the overall grade
-    if (currentStudentGrade >= 97)
+    // Determine the letter grade based on the final numeric score
+    if (finalNumericScore >= 97)
         currentStudentLetterGrade = "A+";
-    else if (currentStudentGrade >= 93)
+    else if (finalNumericScore >= 93)
         currentStudentLetterGrade = "A";
-    else if (currentStudentGrade >= 90)
+    else if (finalNumericScore >= 90)
         currentStudentLetterGrade = "A-";
-    else if (currentStudentGrade >= 87)
+    else if (finalNumericScore >= 87)
         currentStudentLetterGrade = "B+";
-    else if (currentStudentGrade >= 83)
+    else if (finalNumericScore >= 83)
         currentStudentLetterGrade = "B";
-    else if (currentStudentGrade >= 80)
+    else if (finalNumericScore >= 80)
         currentStudentLetterGrade = "B-";
-    else if (currentStudentGrade >= 77)
+    else if (finalNumericScore >= 77)
         currentStudentLetterGrade = "C+";
-    else if (currentStudentGrade >= 73)
+    else if (finalNumericScore >= 73)
         currentStudentLetterGrade = "C";
-    else if (currentStudentGrade >= 70)
+    else if (finalNumericScore >= 70)
         currentStudentLetterGrade = "C-";
-    else if (currentStudentGrade >= 67)
+    else if (finalNumericScore >= 67)
         currentStudentLetterGrade = "D+";
-    else if (currentStudentGrade >= 63)
+    else if (finalNumericScore >= 63)
         currentStudentLetterGrade = "D";
-    else if (currentStudentGrade >= 60)
+    else if (finalNumericScore >= 60)
         currentStudentLetterGrade = "D-";
     else
         currentStudentLetterGrade = "F";
 
     // Output the student's score, grade, and extra credit info
     // Format: Student Name | Exam Score | Overall Grade | Extra Credit
-    // Display `0` for "Exam Score" as per your requirement
-    Console.WriteLine($"{currentStudent}\t\t0\t\t{currentStudentGrade:F1}\t{currentStudentLetterGrade}\t{0} (0 pts)");
+    Console.WriteLine($"{currentStudent,-15}{currentStudentExamScore:F1}\t\t{finalNumericScore:F2}\t{currentStudentLetterGrade}\t{(sumExamScores / examAssignments):F0} ({extraCreditPoints:F2} pts)");
 }
 
 // Keep the output window open for reading results
 Console.WriteLine("\n\rPress the Enter key to continue");
 Console.ReadLine();
-
-
