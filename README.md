@@ -9,4 +9,6 @@
 
 #### Output
 
+Type in `dotnet build` and `dotnet run` to get this output. 
+
 ![alt text](image-3.png)
