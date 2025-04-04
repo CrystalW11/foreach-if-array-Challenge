@@ -26,3 +26,4 @@ D:\coding_dojo\C Sharp\C#\CsharpProjects\10-foreach-if-array-Challenge\obj\Debug
 D:\coding_dojo\C Sharp\C#\CsharpProjects\10-foreach-if-array-Challenge\obj\Debug\net8.0\Final.pdb
 D:\coding_dojo\C Sharp\C#\CsharpProjects\10-foreach-if-array-Challenge\obj\Debug\net8.0\Final.genruntimeconfig.cache
 D:\coding_dojo\C Sharp\C#\CsharpProjects\10-foreach-if-array-Challenge\obj\Debug\net8.0\ref\Final.dll
+D:\coding_dojo\C Sharp\C#\CsharpProjects\10-foreach-if-array-Challenge\obj\Debug\net8.0\Final.sourcelink.json
